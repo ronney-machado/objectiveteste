@@ -78,29 +78,49 @@ public class GourmetGame extends JFrame {
 				respBotao = -1;
 				Prato pTemp = null;
 				String tTemp = "";
-				String tipoExistente = "";
+				int posicao = -1;
 				
 				while(itPratos.hasNext()){
 					pTemp = itPratos.next();
+					
+					if(respBotao == 0) {
+						break;
+					}
+					
+					if(respBotao == 1 && cardapio.getTamanhoPratos() > 1) {
+						break;
+					}
+					
 					while(itTipos.hasNext()) {
 						tTemp = itTipos.next();
+					
 						respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + tTemp, 
 								"Confirm", JOptionPane.YES_NO_OPTION);
 						
-						if(respBotao == 0 && !itTipos.hasNext()) {
+						if(respBotao == 0 && cardapio.getTamanhoPratos() == 1) {
+							if(tTemp.equalsIgnoreCase("Massa")) {
+								respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + "Lasanha?",
+										"Confirm", JOptionPane.YES_NO_OPTION);
+							}else {
+								respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + "Bolo de Chocolate?",
+										"Confirm", JOptionPane.YES_NO_OPTION);
+							}
+							
 							break;
 						}
 						
-						if(respBotao == 0) {
-							respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + pTemp.getNome(), 
-								"Confirm", JOptionPane.YES_NO_OPTION);
+						if(respBotao == 0 && cardapio.getTamanhoPratos() > 1) {
+							posicao = cardapio.getTipoPosicao(tTemp);
+
+							respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + cardapio.getPratoPosicao(posicao).getTipo() + "?",
+									"Confirm", JOptionPane.YES_NO_OPTION);
+							
 							if(respBotao == 0) {
-								break;
+								respBotao = JOptionPane.showConfirmDialog(jp1, "O prato que você pensou é " + cardapio.getPratoPosicao(posicao).getNome() + "?",
+										"Confirm", JOptionPane.YES_NO_OPTION);
 							}
 							
-							if(respBotao == 1 && !itPratos.hasNext()) {
-								break;
-							}
+							break;
 						}
 					}
 				}
@@ -108,14 +128,10 @@ public class GourmetGame extends JFrame {
 				if(respBotao == 1) {
 					String novoNome = JOptionPane.showInputDialog(jp1, "Qual prato você pensou?", "Desisto", 
 						JOptionPane.QUESTION_MESSAGE);
-					
 					prato.setNome(novoNome);
-					
 					String novoTipo = JOptionPane.showInputDialog(jp1, novoNome + " é_____ mas " + 
 							prato.getNome() + " não.", "Complete", JOptionPane.QUESTION_MESSAGE);
-					
 					prato.setTipo(novoTipo);
-					
 					cardapio.addPrato(prato);
 					cardapio.addTipo(tTemp);
 				}
@@ -125,12 +141,6 @@ public class GourmetGame extends JFrame {
 					JOptionPane.showMessageDialog(jp1, "Acertei denovo", "Jogo Gourmet", 
 						JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				//System.out.println(cardapio.getPratos().get(0).getNome());
-				//System.out.println(cardapio.getPratos().get(1).getNome());
-				//System.out.println(cardapio.getTipos().get(0));
-				//System.out.println(cardapio.getTipos().get(1));
-				//System.out.println(cardapio.getTipos().get(2));
 			}
 		});
 		

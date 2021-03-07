@@ -10,8 +10,8 @@ public class Cardapio {
 	public Cardapio() {
 		pratos = new ArrayList<Prato>();
 		tipos = new ArrayList<String>();
-		pratos.add(new Prato("Lasanha", "Massa"));
-		tipos.add("Massa");
+		pratos.add(new Prato("Lasanha", "massa"));
+		tipos.add("massa");
 		tipos.add("Bolo de Chocolate");
 	}
 	
@@ -48,6 +48,10 @@ public class Cardapio {
 
 		return tipos.size() - 1;
 	}
+
+	public int getTipoPosicao(String tipo) {
+		return tipos.lastIndexOf(tipo);
+	}
 	
 	public List<Prato> getPratos() {
 		return pratos;
@@ -71,5 +75,9 @@ public class Cardapio {
 	
 	public int getTamanhoTipos() {
 		return tipos.size();
+	}
+
+	public Prato getPratoPosicao(int posicao) {
+		return pratos.get(posicao);
 	}
 }
