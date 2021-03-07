@@ -29,5 +29,4 @@ public class Prato {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-		
 }

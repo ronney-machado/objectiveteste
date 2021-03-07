@@ -72,5 +72,4 @@ public class Cardapio {
 	public int getTamanhoTipos() {
 		return tipos.size();
 	}
-	
 }

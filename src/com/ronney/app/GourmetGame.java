@@ -126,12 +126,11 @@ public class GourmetGame extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE);
 				}
 
-				System.out.println(cardapio.getPratos().get(0).getNome());
-				System.out.println(cardapio.getPratos().get(1).getNome());
-				System.out.println(cardapio.getTipos().get(0));
-				System.out.println(cardapio.getTipos().get(1));
-				System.out.println(cardapio.getTipos().get(2));
-				
+				//System.out.println(cardapio.getPratos().get(0).getNome());
+				//System.out.println(cardapio.getPratos().get(1).getNome());
+				//System.out.println(cardapio.getTipos().get(0));
+				//System.out.println(cardapio.getTipos().get(1));
+				//System.out.println(cardapio.getTipos().get(2));
 			}
 		});
 		
